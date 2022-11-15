@@ -5,6 +5,7 @@ body {
 
 a {
   text-align: center;
+  padding-left: 24px;
   text-decoration: none;
   color: #000;
   position: absolute;
