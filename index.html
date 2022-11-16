@@ -8,6 +8,7 @@
 
     <link rel="stylesheet" href="bootstrap.css">
     <link rel="stylesheet" href="WEB/css/style.css">
+    <link rel="stylesheet" href="WEB/css/calendar.css">
 
 </head>
 <body>
@@ -283,6 +284,10 @@
                 <div class="row">
                     <div class="empty"></div>
                 </div>
+
+                <div class="row">
+                    <div class="empty"></div>
+                </div>
                 
                 <div class="row">
                     <div class="shadow shadow-up"></div>
@@ -318,12 +323,112 @@
                     <div class="subject subject-down"></div>
                 </div>
 
-                <div class="row">
-                    <div class="empty"></div>
-                </div>
             </div>
 
         </div>
     </div>
+
+    <div id="month-calendar" class="container">
+        <!-- Блок с заголовками (наименования месяца и года) и навигацией (на месяц вперед и назад) -->
+        <ul class="month">
+            <li class="prev"><i class="fas fa-angle-double-left"></i></li>
+            <li class="next"><i class="fas fa-angle-double-right"></i></li>
+            <li class="month-name"></li>
+            <li class="year-name"></li>
+        </ul>
+         <!-- Блок с наименования дней недели, начинается с понедельника (Пн) -->
+        <ul class="weekdays">
+            <li>Пн</li>
+            <li>Вт</li>
+            <li>Ср</li>
+            <li>Чт</li>
+            <li>Пт</li>
+            <li>Сб</li>
+            <li>Нд</li>
+        </ul>
+        <!-- табличная часть, дни месяца -->
+        <ul class="days">
+            <li>1</li>
+            <li>2</li>
+            <li>...</li>
+            <li>31</li>
+        </ul>
+    </div>
+
+    <br>
+    <br>
+    <br>
+
+
+    <script>
+        let nowDate = new Date(),
+        nowDateNumber = nowDate.getDate(),
+        nowMonth = nowDate.getMonth(),
+        nowYear = nowDate.getFullYear(),
+        container = document.getElementById('month-calendar'),
+        monthContainer = container.getElementsByClassName('month-name')[0],
+        yearContainer = container.getElementsByClassName('year-name')[0],
+        daysContainer = container.getElementsByClassName('days')[0],
+        prev = container.getElementsByClassName('prev')[0],
+        next = container.getElementsByClassName('next')[0],
+        monthName = ['Січень','Лютий','Березень','Квітень','Травень','Червень','Липень','Серпень','Вересень','Жовтень','Листопад','Грудень'];
+
+        let curDate = nowDate.setMonth(nowDate.getMonth() - 1);
+        console.log(nowDate.getFullYear());
+
+        function setMonthCalendar(year,month) {
+        let monthDays = new Date(year, month + 1, 0).getDate(),
+            monthPrefix = new Date(year, month, 0).getDay(),
+            monthDaysText = '';
+
+        monthContainer.textContent = monthName[month];
+        yearContainer.textContent = year;
+        daysContainer.innerHTML = '';
+
+        if (monthPrefix > 0){
+            for (let i = 1  ; i <= monthPrefix; i++){
+                monthDaysText += '<li></li>';
+            }
+        }
+
+        for (let i = 1; i <= monthDays; i++){
+            monthDaysText += '<li>' + i + '</li>';
+        }
+
+        daysContainer.innerHTML = monthDaysText;
+
+        if (month == nowMonth && year == nowYear){
+            days = daysContainer.getElementsByTagName('li');
+            days[monthPrefix + nowDateNumber - 1].classList.add('date-now');
+        }
+        }
+
+        setMonthCalendar(nowYear,nowMonth);
+
+        prev.onclick = function () {
+        let curDate = new Date(yearContainer.textContent,monthName.indexOf(monthContainer.textContent));
+
+        curDate.setMonth(curDate.getMonth() - 1);
+
+        let curYear = curDate.getFullYear(),
+            curMonth = curDate.getMonth();
+
+        setMonthCalendar(curYear,curMonth);
+        }
+
+        next.onclick = function () {
+        let curDate = new Date(yearContainer.textContent,monthName.indexOf(monthContainer.textContent));
+
+        curDate.setMonth(curDate.getMonth() + 1);
+
+        let curYear = curDate.getFullYear(),
+            curMonth = curDate.getMonth();
+
+        setMonthCalendar(curYear,curMonth);
+        }
+
+
+
+    </script>
 </body>
 </html>
