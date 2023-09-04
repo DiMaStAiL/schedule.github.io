@@ -98,6 +98,13 @@ a {
   background-color: #84F66E;
   border-radius: 25px 0px 0px 0px;
 }
+.subject-up-empty {
+  background-color: #000 !important;
+}
+.subject-up-empty::before {
+  background-color: #000;
+  border-radius: 25px 0px 0px 0px;
+}
 .subject-down {
   height: 50px;
   border-radius: 0px 0px 15px 0px;
@@ -115,6 +122,13 @@ a {
 }
 .subject-down-green::before {
   background-color: #84F66E;
+  border-radius: 0px 0px 15px 0px;
+}
+.subject-down-empty {
+  background-color: #000;
+}
+.subject-down-empty::before {
+  background-color: #000;
   border-radius: 0px 0px 15px 0px;
 }
 
