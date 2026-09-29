@@ -5,27 +5,36 @@ body {
 
 a {
   text-align: center;
-  padding-left: 24px; 
+  padding-left: 24px;
   text-decoration: none;
   color: #000;
   position: absolute;
   width: 200px;
 }
 
-.header, .time, .empty {
+.header,
+.time,
+.empty {
   background-color: #000;
 }
 
-.header, .time, .empty, .subject {
-  height: 100px;
+.header,
+.time,
+.empty,
+.subject {
+  height: 140px;
+  width: 90%;
 }
 
-.time, .empty {
+.time,
+.empty {
   border-radius: 25px 0px 25px 0px;
   margin: 10px 0px 10px 0px;
 }
 
-.time, .header, .subject {
+.time,
+.header,
+.subject {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -40,6 +49,7 @@ a {
 .day {
   margin: 50px auto 50px auto;
 }
+
 .day .row {
   display: flex;
   justify-content: center;
@@ -55,6 +65,7 @@ a {
 .green {
   background-color: #34F10E;
 }
+
 .green::before {
   background-color: #84F66E;
 }
@@ -62,6 +73,7 @@ a {
 .orange {
   background-color: #ea721d;
 }
+
 .orange::before {
   background-color: #fc9b56;
 }
@@ -69,86 +81,353 @@ a {
 .subject {
   border-radius: 25px 0px 25px 0px;
   margin: 10px 0px;
+  position: relative;
 }
+
 .subject::before {
   content: "";
   width: 100%;
   height: 100%;
   border-radius: 25px 0px 25px 0px;
-  position: relative;
+  position: absolute;
+  top: 0;
   left: 12px;
+  z-index: 1;
 }
+
 .subject-up {
-  height: 50px;
+  height: 70px;
+  width: 90%;
   border-radius: 15px 0px 0px 0px;
   margin: 10px 0px 0px 0px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+  position: relative;
 }
+
 .subject-up-orange {
   background-color: #ea721d !important;
 }
+
 .subject-up-orange::before {
   background-color: #fc9b56;
   border-radius: 25px 0px 0px 0px;
 }
+
 .subject-up-green {
   background-color: #34F10E !important;
 }
+
 .subject-up-green::before {
   background-color: #84F66E;
   border-radius: 25px 0px 0px 0px;
 }
-.subject-up-blank {
-  background-color: #34F10E !important;
+
+.subject-up-empty {
+  background-color: #000 !important;
 }
-.subject-up-blank::before {
+
+.subject-up-empty::before {
   background-color: #000;
   border-radius: 25px 0px 0px 0px;
 }
+
 .subject-down {
-  height: 50px;
+  height: 70px;
+  width: 90%;
   border-radius: 0px 0px 15px 0px;
   margin: 0px 0px 10px 0px;
+  position: relative;
 }
+
 .subject-down-orange {
   background-color: #ea721d !important;
 }
+
 .subject-down-orange::before {
   background-color: #fc9b56;
   border-radius: 0px 0px 15px 0px;
 }
+
 .subject-down-green {
   background-color: #34F10E !important;
 }
+
 .subject-down-green::before {
   background-color: #84F66E;
   border-radius: 0px 0px 15px 0px;
 }
+
 .subject-down-empty {
-  background-color: #34F10E !important;
+  background-color: #000;
 }
+
 .subject-down-empty::before {
-  background-color: #84F66E;
+  background-color: #000;
   border-radius: 0px 0px 15px 0px;
 }
 
+@media (min-width: 1200px) {
+  .col-xl-2 {
+    scale: 0.97;
+  }
+}
+
 @media (min-width: 768px) and (max-width: 1200px) {
-  .table-t-1, .table-t-3 {
+
+  .table-t-1,
+  .table-t-3 {
     visibility: visible;
     display: block;
   }
-  .table-t-2, .table-t-4 {
+
+  .table-t-2,
+  .table-t-4 {
     display: none;
     visibility: hidden;
   }
 }
+
 @media (min-width: 1200px) {
   .table-t-1 {
     visibility: visible;
     display: block;
   }
-  .table-t-2, .table-t-3, .table-t-4 {
+
+  .table-t-2,
+  .table-t-3,
+  .table-t-4,
+  .table-t-5 {
     display: none;
     visibility: hidden;
   }
-}/*# sourceMappingURL=style.css.map */
+}
+
+/* Fix global a tags inside subjects so they don't break flex */
+.subject>a,
+.subject-up>a,
+.subject-down>a {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  padding: 0 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  line-height: 1.2;
+}
+
+.teacher-name {
+  font-size: 14px;
+  font-weight: normal;
+  margin-top: 5px;
+}
+
+/* Button styles for the detailed table */
+.btn-link {
+  display: inline-block;
+  padding: 6px 16px;
+  border-radius: 8px;
+  color: #fff !important;
+  text-decoration: none;
+  font-weight: bold;
+  position: relative; /* Fixes global absolute positioning */
+  width: auto; /* Fixes global 200px width */
+  text-align: center;
+}
+
+.btn-zoom {
+  background: #2D8CFF;
+  font-size: 16px !important;
+}
+
+.btn-class {
+  background: #1FA463;
+  font-size: 16px !important;
+}
+
+.btn-disabled {
+  background: #808080 !important;
+  color: #dcdcdc !important;
+  pointer-events: none;
+  cursor: default;
+  opacity: 0.7;
+}
+
+/* Beautiful table styling */
+#details-table .table th,
+#details-table .table td {
+  vertical-align: middle;
+  text-align: center;
+}
+
+#details-table .table th {
+  font-size: 17px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/*# sourceMappingURL=style.css.map */
+/* Стиль для коду класу */
+.class-code {
+  display: inline-block;
+  font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  background-color: #f1f3f5;
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  user-select: all;
+  -webkit-user-select: all;
+  border: 1px solid #e2e8f0;
+}
+
+/* Адаптація детальної таблиці (Варіант 1: Картки в 1-2 колонки) */
+@media (max-width: 991.98px) {
+  #details-table {
+    padding: 16px 14px !important;
+    margin-top: 30px !important;
+    margin-bottom: 40px !important;
+    border-radius: 14px !important;
+  }
+
+  #details-table h2 {
+    font-size: 20px !important;
+    margin-bottom: 20px !important;
+  }
+
+  #details-table .table-responsive {
+    overflow-x: visible !important;
+    border: none !important;
+  }
+
+  #details-table table {
+    border: none !important;
+    background: transparent !important;
+    display: block !important;
+    width: 100% !important;
+    --bs-table-hover-bg: transparent !important;
+    --bs-table-accent-bg: transparent !important;
+  }
+
+  #details-table thead {
+    display: none !important;
+  }
+
+  #details-table tbody {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+    width: 100% !important;
+  }
+
+  #details-table tbody tr {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    background: #ffffff !important;
+    border: 1px solid #e5e7eb !important;
+    border-radius: 12px;
+    padding: 14px 16px;
+    margin-bottom: 0 !important;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    box-sizing: border-box;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    --bs-table-hover-bg: transparent !important;
+    --bs-table-accent-bg: transparent !important;
+  }
+
+  #details-table tbody tr:hover {
+    background: #ffffff !important;
+    --bs-table-hover-bg: transparent !important;
+    --bs-table-accent-bg: transparent !important;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08) !important;
+  }
+
+  #details-table tbody tr td,
+  #details-table tbody tr td:hover,
+  #details-table tbody tr td:focus,
+  #details-table tbody tr td:active,
+  #details-table tbody tr:hover td {
+    box-shadow: none !important;
+    background: transparent !important;
+    background-color: transparent !important;
+    --bs-table-hover-bg: transparent !important;
+    --bs-table-accent-bg: transparent !important;
+  }
+
+  #details-table tbody tr td {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding: 8px 0 !important;
+    border: none !important;
+    border-bottom: 1px dashed #edf2f7 !important;
+    text-align: right !important;
+    font-size: 14px !important;
+    color: #2d3748;
+    word-break: break-word;
+    box-sizing: border-box;
+  }
+
+  #details-table tbody tr td:last-child {
+    border-bottom: none !important;
+    padding-bottom: 2px !important;
+  }
+
+  #details-table tbody tr td::before {
+    content: attr(data-label);
+    font-weight: 600;
+    color: #718096;
+    text-align: left;
+    padding-right: 12px;
+    font-size: 13px;
+    flex-shrink: 0;
+  }
+
+  /* Назва предмета як головний заголовок картки */
+  #details-table tbody tr td[data-label="Предмет"] {
+    display: block !important;
+    text-align: left !important;
+    border-bottom: 2px solid #edf2f7 !important;
+    padding-top: 0 !important;
+    padding-bottom: 10px !important;
+    margin-bottom: 4px;
+    min-height: 44px;
+  }
+
+  #details-table tbody tr td[data-label="Предмет"]::before {
+    display: none !important;
+  }
+
+  #details-table tbody tr td[data-label="Предмет"] strong {
+    color: #1a202c;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.3;
+  }
+
+  /* Для ID та коду при переносі рядка */
+  #details-table tbody tr td[data-label="ID та Код"] {
+    align-items: flex-start !important;
+    line-height: 1.4;
+    font-size: 13px !important;
+  }
+
+  /* Кнопки в картках на мобільному */
+  #details-table .btn-link {
+    padding: 5px 14px;
+    font-size: 13px !important;
+    border-radius: 6px;
+    min-width: 65px;
+  }
+}
+
+/* 2 колонки карток для ширини від 576px до 991.98px (планшети, горизонтальні телефони, вузькі вікна) */
+@media (min-width: 576px) and (max-width: 991.98px) {
+  #details-table tbody {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
